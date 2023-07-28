@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: local
+
+
+logging:
+  file:
+    name: eat-yet-application.log
+
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

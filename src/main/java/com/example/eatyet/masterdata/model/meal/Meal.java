@@ -1,0 +1,33 @@
+package com.example.eatyet.masterdata.model.meal;
+
+import com.example.eatyet.core.AutoIdEntity;
+import com.example.eatyet.masterdata.model.Rate;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Entity
+@Table(name = "meal")
+@Getter
+@Setter
+public class Meal extends AutoIdEntity {
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "meal_food",
+            joinColumns = @JoinColumn(name = "meal_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "food_id", referencedColumnName = "id"))
+    private List<Food> foodList;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "meal_rate",
+            joinColumns = @JoinColumn(name = "meal_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "rate_id", referencedColumnName = "id"))
+    private Rate rate;
+
+//    @OneToOne
+//    private Price totalPrice;
+    private Double price;
+
+}
