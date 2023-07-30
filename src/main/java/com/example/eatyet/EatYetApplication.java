@@ -2,6 +2,9 @@ package com.example.eatyet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class EatYetApplication {
@@ -10,4 +13,8 @@ public class EatYetApplication {
         SpringApplication.run(EatYetApplication.class, args);
     }
 
+//    @Bean
+//    public WebMvcConfigurer corsConfig(CorsRegistry registry) {
+//        registry
+//    }
 }

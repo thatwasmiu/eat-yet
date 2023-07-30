@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,10 +22,10 @@ public class Step extends AutoIdEntity {
     @JoinTable(name = "step_substitute_ingredient",
             joinColumns = @JoinColumn(name = "step_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "substitute_ingredient_id", referencedColumnName = "id"))
-    private List<SubstituteIngredient> substituteList;
+    private List<SubstituteIngredient> substituteList = new ArrayList<>();
 
     @Transient
-    private List<Ingredient> substitutes;
+    private List<Ingredient> substitutes = new ArrayList<>();
     private Double timeEst;
     private String descr;
 }

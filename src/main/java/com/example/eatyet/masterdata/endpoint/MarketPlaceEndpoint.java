@@ -4,11 +4,13 @@ import com.example.eatyet.masterdata.context.EndpointRoute;
 import com.example.eatyet.core.RestApiEndpoint;
 import com.example.eatyet.masterdata.service.MarketPlaceService;
 import com.example.eatyet.masterdata.model.MarketPlace;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(EndpointRoute.MARKET_PLACE)
+@CrossOrigin(origins = "*")
 public class MarketPlaceEndpoint extends RestApiEndpoint<MarketPlace, Long> {
     private final MarketPlaceService marketPlaceService;
 

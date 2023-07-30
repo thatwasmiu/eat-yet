@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,8 @@ import java.util.List;
 public class Food extends AutoIdEntity {
     private String name;
 
+    private String attachmentUrl;
+
     private Double estimateTime;
 
     private Double totalMaxPrice;
@@ -24,11 +27,11 @@ public class Food extends AutoIdEntity {
 
     private String descr;
 
-    @OneToMany
-    @JoinTable(name = "recipe_step",
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinTable(name = "food_step",
             joinColumns = @JoinColumn(name = "food_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "step_id", referencedColumnName = "id"))
-    private List<Step> steps;
+    private List<Step> steps = new ArrayList<>();
 
 //    @OneToOne
 //    private Price price;
@@ -40,5 +43,5 @@ public class Food extends AutoIdEntity {
     private Rate rate;
 
     @Transient
-    private List<FoodMarket> places;
+    private List<FoodMarket> places = new ArrayList<>();
 }

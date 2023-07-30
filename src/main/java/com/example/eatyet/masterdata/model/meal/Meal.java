@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Meal extends AutoIdEntity {
     @JoinTable(name = "meal_food",
             joinColumns = @JoinColumn(name = "meal_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "food_id", referencedColumnName = "id"))
-    private List<Food> foodList;
+    private List<Food> foodList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "meal_rate",
