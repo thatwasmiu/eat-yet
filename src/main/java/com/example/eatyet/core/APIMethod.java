@@ -7,7 +7,7 @@ public enum APIMethod {
     PUT ("PUT");
 
     public final String value;
-    private APIMethod(String value) {
+    APIMethod(String value) {
         this.value = value;
     }
 }

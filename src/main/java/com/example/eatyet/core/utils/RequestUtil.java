@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class RequestUtil {
             Throwable var8 = null;
 
             try {
-                byte[] input = body.getBytes("utf-8");
+                byte[] input = body.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
             } catch (Throwable var18) {
                 var8 = var18;
@@ -98,8 +99,8 @@ public class RequestUtil {
                 String disposition = httpConn.getHeaderField("Content-Disposition");
                 String contentType = httpConn.getContentType();
                 int contentLength = httpConn.getContentLength();
-                fileName = fileURL.substring(fileURL.lastIndexOf("/"),
-                        fileURL.length());
+                fileName = fileURL.substring(fileURL.lastIndexOf("/")
+                );
 
                 InputStream inputStream = httpConn.getInputStream();
                 String saveFilePath = saveDir + File.separator + fileName;

@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import java.io.Serializable;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 @Transactional
 public class CrudService <T extends BaseEntity, ID extends Serializable> {
@@ -58,5 +59,10 @@ public class CrudService <T extends BaseEntity, ID extends Serializable> {
             return Page.empty();
         }
     }
-    
+
+    public T getOne(ID id) {
+        Optional<T> entity = repo.findById(id);
+        if (!entity.isPresent()) throw new RuntimeException("Entity not found");
+        return entity.get();
+    }
 }

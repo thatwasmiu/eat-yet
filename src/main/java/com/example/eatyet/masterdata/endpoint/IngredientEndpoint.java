@@ -5,11 +5,13 @@ import com.example.eatyet.core.RestApiEndpoint;
 import com.example.eatyet.masterdata.context.EndpointRoute;
 import com.example.eatyet.masterdata.model.meal.Ingredient;
 import com.example.eatyet.masterdata.service.IngredientService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(EndpointRoute.INGREDIENT)
+@CrossOrigin(value = "*")
 public class IngredientEndpoint extends RestApiEndpoint<Ingredient, Long> {
     IngredientService ingredientService;
 

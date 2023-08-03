@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(EndpointRoute.RATE)
 public class RateEndpoint extends RestApiEndpoint<Rate, Long> {
-    private RateService rateService;
+    private final RateService rateService;
 
     public RateEndpoint(RateService service) {
         super(EndpointRoute.RATE, service);

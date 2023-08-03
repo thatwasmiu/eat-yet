@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(EndpointRoute.FOOD)
+@CrossOrigin(value = "*")
 public class FoodEndpoint extends RestApiEndpoint<Food, Long> {
-    private FoodService foodService;
+    private final FoodService foodService;
 
     public FoodEndpoint(FoodService foodService) {
         super(EndpointRoute.FOOD, foodService);

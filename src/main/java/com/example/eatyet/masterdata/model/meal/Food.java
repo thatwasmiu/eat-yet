@@ -17,7 +17,7 @@ import java.util.List;
 public class Food extends AutoIdEntity {
     private String name;
 
-    private String attachmentUrl;
+    private String bannerUrl;
 
     private Double estimateTime;
 

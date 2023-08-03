@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MarketPlaceService extends CrudService<MarketPlace, Long> {
-    private MarketPlaceRepo marketPlaceRepo;
+    private final MarketPlaceRepo marketPlaceRepo;
 
 
     public MarketPlaceService(MarketPlaceRepo repo) {

@@ -17,6 +17,8 @@ public class Ingredient extends AutoIdEntity {
 //    private Price price;
     private Double price;
 
+    private String BannerUrl;
+
     @OneToOne
     @JoinTable(name = "ingredient_rate",
             joinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"),

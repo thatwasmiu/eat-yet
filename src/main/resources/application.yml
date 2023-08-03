@@ -4,8 +4,8 @@ spring:
 
 
 logging:
-  file:
-    name: eat-yet-application.log
+#  file:
+#    name: eat-yet-application.log
 
   level:
     org:

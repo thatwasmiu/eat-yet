@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 
 public class EndpointRsqlVisitor<T> implements RSQLVisitor<Specification<T>, Void> {
-    private GenericRsqlSpecBuilder<T> builder;
+    private final GenericRsqlSpecBuilder<T> builder;
 
     public EndpointRsqlVisitor() {
         this.builder = new GenericRsqlSpecBuilder<T>();

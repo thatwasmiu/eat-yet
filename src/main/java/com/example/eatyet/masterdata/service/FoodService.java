@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FoodService extends CrudService<Food, Long> {
-    private FoodRepo foodRepo;
+    private final FoodRepo foodRepo;
 
     public FoodService(FoodRepo repo) {
         super(repo);

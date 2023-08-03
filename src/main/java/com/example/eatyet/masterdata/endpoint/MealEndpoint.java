@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(EndpointRoute.MEAL)
 public class MealEndpoint extends RestApiEndpoint<Meal, Long> {
-    private MealService mealService;
+    private final MealService mealService;
 
     public MealEndpoint(MealService service) {
         super(EndpointRoute.MEAL, service);

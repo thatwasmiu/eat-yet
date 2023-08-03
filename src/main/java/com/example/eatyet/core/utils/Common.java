@@ -32,7 +32,7 @@ public class Common {
 
     public static Boolean isExist(String path) {
         File f = new File(path);
-        return f.exists() && !f.isDirectory() ? true : false;
+        return f.exists() && !f.isDirectory();
     }
 
     public static String removeLastCharacter(String str) {
@@ -54,7 +54,7 @@ public class Common {
     }
 
     public static <K, V> Map<K, V> clone(Map<K, V> original) {
-        return (Map)original.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return original.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     public static int getRandomNumberInRange(int min, int max) {

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class RestApiEndpoint<T extends BaseEntity, ID extends Serializable> extends BaseEndpoint {
 
-    private CrudService<T, ID> service;
+    private final CrudService<T, ID> service;
 
     public RestApiEndpoint(String url, CrudService<T, ID> service) {
         super(url);
@@ -29,6 +29,12 @@ public class RestApiEndpoint<T extends BaseEntity, ID extends Serializable> exte
         Page<T> page = service.list(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, url);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public T get(@PathVariable(value = "id") ID id) {
+        super.beforeAdvice(APIMethod.GET, id.toString());
+        return service.getOne(id);
     }
 
     @PostMapping

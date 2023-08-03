@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class IngredientService extends CrudService<Ingredient, Long> {
-    private IngredientRepo ingredientRepo;
+    private final IngredientRepo ingredientRepo;
 
     public IngredientService(IngredientRepo repo) {
         super(repo);

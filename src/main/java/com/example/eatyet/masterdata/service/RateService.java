@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RateService extends CrudService<Rate, Long> {
-    private RateRepo rateRepo;
+    private final RateRepo rateRepo;
 
     public RateService(RateRepo repo) {
         super(repo);
