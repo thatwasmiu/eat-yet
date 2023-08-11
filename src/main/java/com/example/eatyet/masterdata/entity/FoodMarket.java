@@ -6,5 +6,5 @@ import lombok.Builder;
 public class FoodMarket {
     private Long id;
     private String name;
-    private String imgUrl;
+    private String bannerUrl;
 }

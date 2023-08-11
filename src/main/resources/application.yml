@@ -11,3 +11,8 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+
+        type:
+          descriptor:
+            SQL:
+              BasicBinder: TRACE

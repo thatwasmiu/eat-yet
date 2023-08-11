@@ -37,3 +37,5 @@ eat-yet-application.log.2023-07-27.0.gz
 /attachments/
 
 attachment/
+/src/main/java/com/example/eatyet/masterdata/model/oneToMany/
+/src/main/resources/sql/

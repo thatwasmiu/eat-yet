@@ -22,9 +22,7 @@ public class Meal extends AutoIdEntity {
     private List<Food> foodList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "meal_rate",
-            joinColumns = @JoinColumn(name = "meal_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "rate_id", referencedColumnName = "id"))
+    @JoinColumn(name = "rate_id")
     private Rate rate;
 
 //    @OneToOne

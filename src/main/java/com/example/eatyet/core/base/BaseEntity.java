@@ -22,4 +22,12 @@ public class BaseEntity implements Serializable {
     public String getCreatedBy() {
         return createdBy;
     }
+
+    public void setCreatedOn(Long createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 }

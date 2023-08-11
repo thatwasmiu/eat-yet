@@ -1,7 +1,6 @@
 package com.example.eatyet.core;
 
 import com.example.eatyet.core.base.BaseEndpoint;
-import com.example.eatyet.core.base.BaseEntity;
 import com.example.eatyet.core.utils.PaginationUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class RestApiEndpoint<T extends BaseEntity, ID extends Serializable> extends BaseEndpoint {
+public class RestApiEndpoint<T extends AutoIdEntity, ID extends Serializable> extends BaseEndpoint {
 
     private final CrudService<T, ID> service;
 
@@ -40,8 +39,15 @@ public class RestApiEndpoint<T extends BaseEntity, ID extends Serializable> exte
     @PostMapping
     public ResponseEntity<T> create(@RequestBody T object) {
         super.beforeAdvice(APIMethod.POST, "");
-        T entity = service.upSert(object);
+        T entity = service.create(object);
         return new ResponseEntity<>(entity, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public T update(@RequestBody T object, @PathVariable(value = "id") ID id) {
+        super.beforeAdvice(APIMethod.PUT, "");
+        if (!id.equals(object.getId())) throw new RuntimeException("");
+        return service.update(object);
     }
 
     @DeleteMapping("/{id}")

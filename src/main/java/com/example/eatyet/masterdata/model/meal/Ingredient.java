@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "ingredient")
 @Getter
@@ -13,15 +15,15 @@ import lombok.Setter;
 public class Ingredient extends AutoIdEntity {
     private String name;
 
-//    @OneToOne
-//    private Price price;
+    private String descr;
     private Double price;
 
     private String BannerUrl;
 
-    @OneToOne
-    @JoinTable(name = "ingredient_rate",
-            joinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "rate_id", referencedColumnName = "id"))
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rate_id")
     private Rate rate;
+
+//    @OneToOne
+//    private Price price;
 }

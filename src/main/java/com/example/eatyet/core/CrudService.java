@@ -1,6 +1,5 @@
 package com.example.eatyet.core;
 
-import com.example.eatyet.core.base.BaseEntity;
 import com.example.eatyet.core.base.BaseJpaRepository;
 import com.example.eatyet.core.rsql.EndpointRsqlVisitor;
 import cz.jirutka.rsql.parser.RSQLParser;
@@ -17,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Transactional
-public class CrudService <T extends BaseEntity, ID extends Serializable> {
+public class CrudService <T extends AutoIdEntity, ID extends Serializable> {
 
     private final BaseJpaRepository<T, ID> repo;
 
@@ -29,9 +28,31 @@ public class CrudService <T extends BaseEntity, ID extends Serializable> {
         return repo.findAll(pageable);
     }
 
-    public T upSert(T entity) {
-        return repo.save(entity);
+    public T create(T entity) {
+        beforeCreate(entity);
+        T data = repo.save(entity);
+        afterUpsert(data);
+        return data;
     }
+
+    protected void beforeCreate(T entity) {
+//        if (!Objects.nonNull(entity.getId()))
+//            throw new RuntimeException("ID is not null when trying to create new");
+    }
+
+    protected void validateUniqueField(T entity) {}
+
+    public T update(T entity) {
+        T E = repo.findById((ID) entity.getId()).orElseThrow(() -> new RuntimeException("Not Found"));
+        E = compareAndAudit(entity, E);
+        return repo.save(E);
+    }
+
+    protected T compareAndAudit(T entity, T E) {
+        return entity;
+    }
+
+    protected void afterUpsert(T entity) {}
 
     public void delete(T entity) {
         repo.delete(entity);

@@ -13,9 +13,9 @@ public class MarketPlace extends AutoIdEntity {
 
     private String name;
 
+    private String bannerUrl;
+
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "market_place_rate",
-            joinColumns = @JoinColumn(name = "market_place_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "rate_id", referencedColumnName = "id"))
+    @JoinColumn(name = "rate_id")
     private Rate rate;
 }
