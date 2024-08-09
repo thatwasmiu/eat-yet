@@ -1,18 +1,14 @@
 package com.example.eatyet.masterdata.model.meal;
 
 import com.example.eatyet.core.AutoIdEntity;
-import com.example.eatyet.masterdata.entity.FoodMarket;
 import com.example.eatyet.masterdata.model.Rate;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Transient;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "food")
@@ -35,11 +31,9 @@ public class Food extends AutoIdEntity {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "food")
     private List<Step> steps = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "food_ingredient",
-            joinColumns = @JoinColumn(name = "food_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
-    private Set<Ingredient> ingredients = new HashSet<>();
+    @JsonManagedReference
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "food")
+    private List<FoodIngredient> foodIngredients = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rate_id")

@@ -15,7 +15,7 @@ public class MarketPlace extends AutoIdEntity {
 
     private String bannerUrl;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rate_id")
     private Rate rate;
 }
